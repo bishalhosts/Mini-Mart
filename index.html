@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MiniMart – Local Products &amp; Handicrafts</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <header class="brand">
+    <div class="logo"><span class="mark" aria-hidden="true">M</span><span class="word">MiniMart</span></div>
+    <div>
+      <button id="loginOpenBtn" class="btn ghost" type="button">Login / Sign Up</button>
+      <div id="userBar" hidden>
+        <span id="whoami"></span>
+        <button id="logoutBtn" class="btn ghost" type="button">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Local goods, made and grown nearby</h1>
+      <p class="lead">Browse fresh produce, handicrafts and more. You only need an account when you’re ready to order.</p>
+    </section>
+
+    <p id="notice" class="notice" role="status" hidden></p>
+    <nav id="categoryBar" class="chips" aria-label="Product categories"></nav>
+    <div id="productGrid" aria-live="polite">Loading products…</div>
+
+    <form id="orderForm" class="panel order">
+      <h2>Your order</h2>
+      <ul id="cartSummary" class="summary"></ul>
+      <p class="total">Total: <strong id="cartTotal">0.00</strong></p>
+      <p id="cartSaved" class="saved" hidden></p>
+
+      <fieldset id="orderFields" class="plain" hidden disabled>
+        <label for="fullName">Full name</label>
+        <input id="fullName" type="text" autocomplete="name" maxlength="80" required>
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" autocomplete="tel" pattern="\+?[0-9 \-()]{7,20}" title="7–15 digits, optionally starting with +" required>
+        <label for="address">Delivery address</label>
+        <textarea id="address" rows="3" maxlength="300" autocomplete="street-address" required></textarea>
+
+        <fieldset>
+          <legend>Payment method</legend>
+          <label class="radio"><input type="radio" name="payment" value="Cash on Delivery" checked> Cash on Delivery</label>
+          <label class="radio"><input type="radio" name="payment" value="QR Code Payment"> QR Code Payment</label>
+        </fieldset>
+
+        <div id="qrSection" class="qr" hidden>
+          <img src="qr.png" alt="Payment QR code" width="200" height="200">
+          <p>Scan to pay the total above, then upload your payment screenshot.</p>
+          <label for="screenshot">Payment screenshot (JPG, PNG or WebP, max 5 MB)</label>
+          <input id="screenshot" type="file" accept="image/jpeg,image/png,image/webp">
+        </div>
+      </fieldset>
+
+      <button id="orderBtn" class="btn" type="submit">Log in to checkout</button>
+      <p id="orderMsg" class="msg" role="alert"></p>
+    </form>
+  </main>
+
+  <dialog id="authDialog" aria-labelledby="authTitle">
+    <div class="dlg-head">
+      <h2 id="authTitle">Login / Sign Up</h2>
+      <button id="closeAuth" class="btn ghost" type="button" aria-label="Close">✕</button>
+    </div>
+
+    <form id="loginForm">
+      <p class="lead">New here? Pick a username and password and we’ll create your account.</p>
+      <label for="username">Username</label>
+      <input id="username" type="text" autocomplete="username" minlength="3" maxlength="30" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" minlength="6" maxlength="100" required>
+      <div id="emailRow" hidden>
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email">
+        <p class="hint">Needed to create your account. We use it for order confirmations and password resets.</p>
+      </div>
+      <button id="authBtn" class="btn" type="submit">Login / Sign Up</button>
+      <button id="forgotLink" class="link" type="button">Forgot password?</button>
+    </form>
+
+    <form id="forgotForm" hidden>
+      <p class="lead">Enter your username and we’ll email a 6-digit code to the address on your account.</p>
+      <label for="forgotUser">Username</label>
+      <input id="forgotUser" type="text" autocomplete="username" maxlength="30" required>
+      <button id="forgotBtn" class="btn" type="submit">Email me a code</button>
+      <button class="link back" type="button">Back to login</button>
+    </form>
+
+    <form id="resetForm" hidden>
+      <label for="resetCode">6-digit code</label>
+      <input id="resetCode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+      <label for="newPassword">New password</label>
+      <input id="newPassword" type="password" minlength="6" maxlength="100" autocomplete="new-password" required>
+      <button id="resetBtn" class="btn" type="submit">Set new password</button>
+      <button class="link back" type="button">Back to login</button>
+    </form>
+
+    <p id="authMsg" class="msg" role="alert"></p>
+  </dialog>
+
+  <footer>Developed by Bishal Regmi</footer>
+  <script src="app.js?v=4"></script>
+  <script>
+    /* If app.js is missing or an older copy, tell the visitor instead of failing silently. */
+    if (window.MINIMART_VERSION !== 4) {
+      var n = document.getElementById('notice');
+      n.textContent = 'app.js did not load or is an older version. Upload the latest app.js next to index.html, then hard-refresh (Ctrl+F5).';
+      n.hidden = false;
+    }
+  </script>
+</body>
+</html>
