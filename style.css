@@ -150,4 +150,8 @@ footer { padding:2rem; text-align:center; font-size:.9rem; background:#fff; colo
 @media (max-width: 600px) {
   h1 { font-size: 2rem; }
   .hero { padding: 2rem 0 1rem; }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6d7c5d7aea868da37ba39364e0b633dc0b1fd32e
