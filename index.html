@@ -4,17 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MiniMart – Local Products &amp; Handicrafts</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  
+  <!-- Google Fonts: Poppins & Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <header class="brand">
-    <div class="logo"><span class="mark" aria-hidden="true">M</span><span class="word">MiniMart</span></div>
-    <div>
-      <button id="loginOpenBtn" class="btn ghost" type="button">Login / Sign Up</button>
+    <div class="logo">
+      <span class="mark" aria-hidden="true">M</span>
+      <span class="word">MiniMart</span>
+    </div>
+    <div class="nav-actions">
+      <button id="loginOpenBtn" class="btn ghost btn-sm" type="button">Login / Sign Up</button>
       <div id="userBar" hidden>
-        <span id="whoami"></span>
-        <button id="logoutBtn" class="btn ghost" type="button">Logout</button>
+        <span id="whoami" class="user-greeting"></span>
+        <button id="logoutBtn" class="btn ghost btn-sm" type="button">Logout</button>
       </div>
+      
+      <!-- Cart Icon -->
+      <button id="openCartBtn" class="icon-btn cart-btn" aria-label="Cart">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        <span id="cartBadge" class="cart-badge" hidden>0</span>
+      </button>
     </div>
   </header>
 
@@ -27,9 +42,16 @@
     <p id="notice" class="notice" role="status" hidden></p>
     <nav id="categoryBar" class="chips" aria-label="Product categories"></nav>
     <div id="productGrid" aria-live="polite">Loading products…</div>
+  </main>
 
-    <form id="orderForm" class="panel order">
-      <h2>Your order</h2>
+  <!-- CHECKOUT DIALOG (Moved from bottom) -->
+  <dialog id="checkoutDialog" class="checkout-modal">
+    <div class="dlg-head">
+      <h2>Your Order</h2>
+      <button id="closeCheckout" class="btn ghost" type="button" aria-label="Close">✕</button>
+    </div>
+    
+    <form id="orderForm">
       <ul id="cartSummary" class="summary"></ul>
       <p class="total">Total: <strong id="cartTotal">0.00</strong></p>
       <p id="cartSaved" class="saved" hidden></p>
@@ -59,8 +81,9 @@
       <button id="orderBtn" class="btn" type="submit">Log in to checkout</button>
       <p id="orderMsg" class="msg" role="alert"></p>
     </form>
-  </main>
+  </dialog>
 
+  <!-- LOGIN DIALOG -->
   <dialog id="authDialog" aria-labelledby="authTitle">
     <div class="dlg-head">
       <h2 id="authTitle">Login / Sign Up</h2>
@@ -103,14 +126,6 @@
   </dialog>
 
   <footer>Developed by Bishal Regmi</footer>
-  <script src="app.js?v=4"></script>
-  <script>
-    /* If app.js is missing or an older copy, tell the visitor instead of failing silently. */
-    if (window.MINIMART_VERSION !== 4) {
-      var n = document.getElementById('notice');
-      n.textContent = 'app.js did not load or is an older version. Upload the latest app.js next to index.html, then hard-refresh (Ctrl+F5).';
-      n.hidden = false;
-    }
-  </script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
